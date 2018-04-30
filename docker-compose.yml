@@ -1,0 +1,20 @@
+version: '2'
+services:
+  login-service:
+    image: login-service
+    depends_on:
+     - eureka-server
+  register-service:
+    image: register-service
+    depends_on:
+     - eureka-server
+  eureka-server:
+    image: eureka-server
+    ports:
+     - "8761:8761"
+  zuul-server:
+    image: zuul-server
+    depends_on:
+     - eureka-server
+    ports:
+     - "8065:8065"
